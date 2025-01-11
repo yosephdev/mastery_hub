@@ -74,7 +74,7 @@
                             <p class="card-text text-muted">{{ session.description|truncatewords:15 }}</p>
 
                             <div class="d-flex align-items-center mb-3">
-                                <img src="{{ session.host.user.profile_image.url|default:static 'images/default-avatar.png' }}"
+                                <img src="{% if session.host.user.profile_image %}{{ session.host.user.profile_image.url }}{% else %}{% static 'images/default-avatar.png' %}{% endif %}"
                                     class="rounded-circle me-2 host-avatar" 
                                     alt="{{ session.host.user.get_full_name }}">
                                 <div class="small text-muted">
