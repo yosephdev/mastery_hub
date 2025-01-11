@@ -11,8 +11,10 @@ def send_order_confirmation(order_id):
     """
     try:
         order = Order.objects.get(id=order_id)
-        subject = f'MasteryHub - Order Confirmation #{order.order_number}'
-                
+        subject = f'MasteryHub - Order Confirmation #{order.order_number}'                
+       
+        recipient_email = order.email or order.user.email
+        
         context = {
             'order': order,
             'contact_email': settings.DEFAULT_FROM_EMAIL,
@@ -33,7 +35,7 @@ def send_order_confirmation(order_id):
             subject,
             message,
             settings.DEFAULT_FROM_EMAIL,
-            [order.email],
+            [recipient_email],
             fail_silently=False,
             html_message=html_message
         )
