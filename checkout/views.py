@@ -345,6 +345,7 @@ def checkout(request):
                     with transaction.atomic():
                         order = order_form.save(commit=False)
                         order.user = request.user
+                        order.email = request.POST.get('email')
                         order.order_number = uuid.uuid4().hex.upper()
                         order.order_total = grand_total
                         order.grand_total = grand_total
@@ -491,8 +492,7 @@ def checkout_success(request, order_number):
             profile_form = ProfileForm(profile_data, instance=profile)
             if profile_form.is_valid():
                 profile_form.save()
-
-    # Clear the cart
+    
     if 'cart' in request.session:
         del request.session['cart']
 
