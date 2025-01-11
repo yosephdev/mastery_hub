@@ -64,26 +64,26 @@
         <div class="email-container">
             <h1>MasteryHub</h1>
 
-            <p>{% trans "Hello" %}{% if user.get_full_name %} {{ user.get_full_name }}{% endif %},</p>
+            <p>Hello{% if user.get_full_name %} {{ user.get_full_name }}{% endif %},</p>
 
-            <p>{% blocktrans %}Thank you for signing up with MasteryHub! Please confirm your email address by clicking
-                the button below:{% endblocktrans %}</p>
+            <p>Thank you for signing up with MasteryHub! Please confirm your email address by clicking
+                the button below:</p>
 
             <div class="button-container">
-                <a href="{{ activate_url }}" class="button">{% trans "Confirm Email Address" %}</a>
+                <a href="{{ activate_url }}" class="button">Confirm Email Address</a>
             </div>
 
             <div style="margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 4px;">
                 <p style="font-size: 14px;">
-                    {% trans "If the button doesn't work, copy and paste this link into your browser:" %}<br>
+                    If the button doesn't work, copy and paste this link into your browser:<br>
                     {{ activate_url }}
                 </p>
             </div>
 
             <div class="footer">
-                <p>{% blocktrans %}This confirmation link will expire in {{ expiry_days }} days.{% endblocktrans %}</p>
-                <p>{% trans "If you didn't create an account with MasteryHub, you can safely ignore this email." %}</p>
-                <p>{% trans "Best regards" %},<br>{% trans "The MasteryHub Team" %}</p>
+                <p>This confirmation link will expire in {{ expiry_days }} days.</p>
+                <p>If you didn't create an account with MasteryHub, you can safely ignore this email.</p>
+                <p>Best regards,<br>The MasteryHub Team</p>
             </div>
         </div>
     </div>
