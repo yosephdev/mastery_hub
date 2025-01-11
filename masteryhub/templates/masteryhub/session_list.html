@@ -50,9 +50,15 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="card h-100 shadow-sm hover-lift border-0 rounded-3">
                         <div class="position-relative">
-                            <img class="card-img-top"
+                            <img class="card-img-top session-card-image"
                                 src="{% if session.image %}{{ session.image.url }}{% else %}{% static 'images/no-image-available.webp' %}{% endif %}"
-                                loading="lazy" alt="{{ session.title }}">
+                                loading="lazy" 
+                                alt="{{ session.title }}">
+                            <div class="position-absolute top-0 start-0 m-2">
+                                <span class="badge bg-success rounded-pill">
+                                    <i class="fas fa-tag me-1"></i>${{ session.price }}
+                                </span>
+                            </div>
                             <div class="position-absolute top-0 end-0 m-2">
                                 <span class="badge bg-primary rounded-pill">
                                     <i class="fas fa-users me-1"></i>
@@ -68,9 +74,9 @@
                             <p class="card-text text-muted">{{ session.description|truncatewords:15 }}</p>
 
                             <div class="d-flex align-items-center mb-3">
-                                <img src="{{ session.host.user.profile_image.url|default:'/static/images/default-avatar.png' }}"
-                                    class="rounded-circle me-2" alt="{{ session.host.user.get_full_name }}"
-                                    style="width: 30px; height: 30px; object-fit: cover;">
+                                <img src="{{ session.host.user.profile_image.url|default:static 'images/default-avatar.png' }}"
+                                    class="rounded-circle me-2 host-avatar" 
+                                    alt="{{ session.host.user.get_full_name }}">
                                 <div class="small text-muted">
                                     Expert: {{ session.host.user.username }}
                                 </div>
@@ -100,11 +106,11 @@
                                 {% if user.is_authenticated %}
                                     {% if not user.is_expert %}
                                         {% if session in user_sessions %}
-                                            <button class="btn btn-success disabled">
+                                            <button type="button" class="btn btn-success disabled">
                                                 <i class="fas fa-check-circle me-1"></i>Already Enrolled
                                             </button>
                                         {% else %}
-                                            <button
+                                            <button type="button"
                                                 onclick="addToBag('{{ session.id }}', '{{ session.title }}', '{{ session.price }}')"
                                                 class="btn btn-primary">
                                                 <i class="fas fa-shopping-cart me-1"></i>Add to Bag
