@@ -9,7 +9,7 @@ load_dotenv()
 # Core Django Settings
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
-DEBUG = True
+DEBUG = False
 ROOT_URLCONF = "skill_sharing_platform.urls"
 WSGI_APPLICATION = "skill_sharing_platform.wsgi.application"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
